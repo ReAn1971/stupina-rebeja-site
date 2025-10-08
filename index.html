@@ -3,385 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STUPINA FAMILIEI REBEJA</title>
-  <style><!DOCTYPE html>
-<html lang="ro">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STUPINA FAMILIEI REBEJA</title>
+  <title>Stupina Familiei Rebeja</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      color: #4b3b05;
-      text-align: center;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/5/5a/Honey_bee_on_flower_2.jpg') no-repeat center center fixed;
-      background-size: cover;
-      position: relative;
-      transition: background-image 0.5s ease-in-out;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 240, 0.8);
-      z-index: -1;
-    }
-
-    header {
-      background: rgba(245, 196, 0, 0.9);
-      color: #fff;
-      padding: 1.5rem 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-
-    header p {
-      margin: 0;
-      font-size: 1rem;
-    }
-
-    section {
-      padding: 2rem 1rem;
-    }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .card {
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 15px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      padding: 1rem;
-      transition: transform 0.2s;
-    }
-
-    .card:hover {
-      transform: scale(1.03);
-    }
-
-    footer {
-      background-color: rgba(242, 169, 0, 0.9);
-      color: #fff;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
-
-    .lang-switch {
-      margin-top: 1rem;
-    }
-
-    .lang-switch button {
-      margin: 0 5px;
-      background-color: #fff8cc;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background-color 0.2s;
-    }
-
-    .lang-switch button:hover {
-      background-color: #ffe26b;
-    }
-
-    .whatsapp-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25D366;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-      transition: transform 0.2s;
-    }
-
-    .whatsapp-button:hover {
-      transform: scale(1.1);
-    }
-
-    .whatsapp-button img {
-      width: 35px;
-      height: 35px;
-    }
-
-    .highlight-text {
-      font-size: 1.3rem;
-      color: #000000;
-      font-weight: bold;
-      text-align: center;
-      margin: 20px 0;
-      padding: 10px;
-      background-color: rgba(255, 255, 255, 0.7);
-      border-radius: 8px;
-    }
-
-    /* Стили для загрузки фона */
-    .background-controls {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 20px;
-      margin: 20px auto;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      max-width: 500px;
-    }
-
-    .background-controls h3 {
-      margin-top: 0;
-      color: #4b3b05;
-    }
-
-    .upload-container {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      align-items: center;
-    }
-
-    .file-input {
-      display: none;
-    }
-
-    .upload-btn {
-      background: #f5c400;
-      color: white;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: bold;
-      transition: background-color 0.2s;
-    }
-
-    .upload-btn:hover {
-      background: #e0b500;
-    }
-
-    .image-preview {
-      width: 100%;
-      max-width: 300px;
-      height: 150px;
-      border: 2px dashed #f5c400;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      background: rgba(245, 196, 0, 0.1);
-    }
-
-    .preview-image {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-
-    .preview-text {
-      color: #666;
-      font-style: italic;
-    }
-
-    .apply-bg {
-      background: #4b3b05;
-      margin-top: 10px;
-    }
-
-    .apply-bg:hover {
-      background: #3a2e04;
-    }
-
-    .bg-status {
-      margin-top: 10px;
-      font-size: 0.9rem;
-      color: #666;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>***STUPINA FAMILIEI REBEJA***</h1>
-    <p>Miere si prduse naturale</p>
-    <div class="lang-switch">
-      <button onclick="setLang('ro')">🇲🇩 Română</button>
-      <button onclick="setLang('ru')">🇷🇺 Русский</button>
-    </div>
-  </header>
-
-  <!-- Панель загрузки фона -->
-  <div class="background-controls">
-    <h3 id="bg-title">Încarcă-ți fundalul personalizat</h3>
-    <div class="upload-container">
-      <input type="file" id="bg-upload" class="file-input" accept="image/*">
-      <button class="upload-btn" onclick="document.getElementById('bg-upload').click()">Alege o imagine</button>
-      
-      <div class="image-preview" id="image-preview">
-        <span class="preview-text" id="preview-text">Previzualizare imagine</span>
-        <img id="preview-img" class="preview-image" style="display: none;">
-      </div>
-      
-      <button class="upload-btn apply-bg" id="apply-btn" style="display: none;" onclick="applyBackground()">Aplică ca fundal</button>
-      <div class="bg-status" id="bg-status"></div>
-    </div>
-  </div>
-
-  <section id="content"></section>
-
-  <p class="highlight-text">***Miere naturală din Șișcani***</p>
-
-  <footer>
-    <p>📍 Șișcani, Moldova | 📞 078489829 | ✉️ anatolierebeja@gmail.com</p>
-  </footer>
-
-  <a href="https://wa.me/37378489829" target="_blank" class="whatsapp-button">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-  </a>
-
-  <script>
-    const content = document.getElementById('content');
-    let selectedBackground = null;
-
-    const texts = {
-      ro: {
-        main: `
-          <h2>Produsele noastre</h2>
-          <div class="products">
-            <div class="card"><h3>Miere naturală</h3><p>Recoltată cu grijă din stupina familiei Rebeja, 100% naturală.</p></div>
-            <div class="card"><h3>Perga</h3><p>O sursă puternică de vitamine și energie naturală.</p></div>
-            <div class="card"><h3>Propolis</h3><p>Antibiotic natural pentru sănătate și imunitate.</p></div>
-            <div class="card"><h3>Familii de albine</h3><p>Oferim roiuri și familii sănătoase de albine rasa Carpatina.</p></div>
-          </div>
-        `,
-        bgTitle: "Încarcă-ți fundalul personalizat",
-        chooseImage: "Alege o imagine",
-        preview: "Previzualizare imagine",
-        apply: "Aplică ca fundal",
-        success: "Fundal aplicat cu succes!"
-      },
-      ru: {
-        main: `
-          <h2>Наша продукция</h2>
-          <div class="products">
-            <div class="card"><h3>Натуральный мёд</h3><p>Собран с любовью на семейной пасеке Ребежа, 100% натуральный.</p></div>
-            <div class="card"><h3>Перга</h3><p>Мощный источник витаминов и природной энергии.</p></div>
-            <div class="card"><h3>Прополис</h3><p>Природный антибиотик для здоровья и иммунитета.</p></div>
-            <div class="card"><h3>Отводки пчёл</h3><p>Продаём сильные семьи пчёл породы Карпатка.</p></div>
-          </div>
-        `,
-        bgTitle: "Загрузите свой фон",
-        chooseImage: "Выберите изображение",
-        preview: "Предпросмотр изображения",
-        apply: "Применить как фон",
-        success: "Фон успешно применен!"
-      }
-    };
-
-    function setLang(lang) {
-      content.innerHTML = texts[lang].main;
-      document.getElementById('bg-title').textContent = texts[lang].bgTitle;
-      document.querySelector('.upload-btn').textContent = texts[lang].chooseImage;
-      document.getElementById('preview-text').textContent = texts[lang].preview;
-      document.getElementById('apply-btn').textContent = texts[lang].apply;
-      localStorage.setItem('lang', lang);
-    }
-
-    // Обработчик загрузки фона
-    document.getElementById('bg-upload').addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      if (file) {
-        // Проверяем тип файла
-        if (!file.type.match('image.*')) {
-          showStatus('Пожалуйста, выберите файл изображения', 'error');
-          return;
-        }
-        
-        // Проверяем размер файла (максимум 5MB)
-        if (file.size > 5 * 1024 * 1024) {
-          showStatus('Размер файла не должен превышать 5MB', 'error');
-          return;
-        }
-        
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          selectedBackground = e.target.result;
-          
-          // Показываем превью
-          const previewImg = document.getElementById('preview-img');
-          const previewText = document.getElementById('preview-text');
-          const applyBtn = document.getElementById('apply-btn');
-          
-          previewImg.src = selectedBackground;
-          previewImg.style.display = 'block';
-          previewText.style.display = 'none';
-          applyBtn.style.display = 'block';
-          
-          showStatus('Изображение загружено. Нажмите "Применить как фон"');
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-
-    function applyBackground() {
-      if (selectedBackground) {
-        // Применяем фон ко всему body
-        document.body.style.backgroundImage = `url('${selectedBackground}')`;
-        document.body.style.backgroundSize = 'cover';
-        document.body.style.backgroundPosition = 'center center';
-        document.body.style.backgroundAttachment = 'fixed';
-        
-        // Сохраняем в localStorage
-        localStorage.setItem('customBackground', selectedBackground);
-        
-        showStatus(getCurrentTexts().success, 'success');
-      }
-    }
-
-    function showStatus(message, type = 'info') {
-      const statusElement = document.getElementById('bg-status');
-      statusElement.textContent = message;
-      statusElement.style.color = type === 'error' ? '#d32f2f' : type === 'success' ? '#388e3c' : '#666';
-    }
-
-    function getCurrentTexts() {
-      const currentLang = localStorage.getItem('lang') || 'ro';
-      return texts[currentLang];
-    }
-
-    // Восстанавливаем сохраненный фон при загрузке страницы
-    window.addEventListener('load', function() {
-      const savedLang = localStorage.getItem('lang') || 'ro';
-      setLang(savedLang);
-      
-      const savedBackground = localStorage.getItem('customBackground');
-      if (savedBackground) {
-        document.body.style.backgroundImage = `url('${savedBackground}')`;
-        document.body.style.backgroundSize = 'cover';
-        document.body.style.backgroundPosition = 'center center';
-        document.body.style.backgroundAttachment = 'fixed';
-      }
-    });
-  </script>
-</body>
-</html>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -495,23 +118,83 @@
       height: 35px;
     }
 
-    /* Стиль для выделенного абзаца */
-    .highlight-text {
-      font-size: 1.3rem; /* Чуть больше обычного шрифта */
-      color: #000000; /* Черный цвет */
-      font-weight: bold; /* Жирное начертание */
-      text-align: center; /* Выравнивание по центру */
-      margin: 20px 0; /* Отступы сверху и снизу */
-      padding: 10px; /* Внутренние отступы */
-      background-color: rgba(255, 255, 255, 0.7); /* Легкий белый фон для лучшей читаемости */
-      border-radius: 8px; /* Закругленные углы */
+    /* Новые стили для загрузки фото */
+    .upload-section {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px dashed #f5c400;
+    }
+
+    .file-input {
+      display: none;
+    }
+
+    .upload-btn {
+      background-color: #f5c400;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+      margin-bottom: 10px;
+    }
+
+    .upload-btn:hover {
+      background-color: #e0b500;
+    }
+
+    .image-preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+      min-height: 60px;
+      justify-content: center;
+    }
+
+    .preview-image {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid #f5c400;
+    }
+
+    .upload-status {
+      margin-top: 5px;
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    .delete-btn {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-container {
+      position: relative;
+      display: inline-block;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>STUPINA FAMILIEI REBEJA</h1>
-    <p>Miere naturală din Șișcani</p>
+    <h1>Stupina Familiei Rebeja</h1>
+    <p>Apicultură naturală din Șișcani, Moldova</p>
     <div class="lang-switch">
       <button onclick="setLang('ro')">🇲🇩 Română</button>
       <button onclick="setLang('ru')">🇷🇺 Русский</button>
@@ -519,9 +202,6 @@
   </header>
 
   <section id="content"></section>
-
-  <!-- Добавленный абзац с измененным стилем -->
-  <p class="highlight-text">***Miere naturală din Șișcani***</p>
 
   <footer>
     <p>📍 Șișcani, Moldova | 📞 078489829 | ✉️ anatolierebeja@gmail.com</p>
@@ -538,19 +218,91 @@
       ro: `
         <h2>Produsele noastre</h2>
         <div class="products">
-          <div class="card"><h3>Miere naturală</h3><p>Recoltată cu grijă din stupina familiei Rebeja, 100% naturală.</p></div>
-          <div class="card"><h3>Perga</h3><p>O sursă puternică de vitamine și energie naturală.</p></div>
-          <div class="card"><h3>Propolis</h3><p>Antibiotic natural pentru sănătate și imunitate.</p></div>
-          <div class="card"><h3>Familii de albine</h3><p>Oferim roiuri și familii sănătoase de albine rasa Carpatina.</p></div>
+          <div class="card">
+            <h3>Miere naturală</h3>
+            <p>Recoltată cu grijă din stupina familiei Rebeja, 100% naturală.</p>
+            <div class="upload-section">
+              <div class="image-preview" id="honey-preview"></div>
+              <input type="file" class="file-input" data-category="honey" accept="image/*" multiple>
+              <button class="upload-btn" onclick="triggerUpload('honey')">Încarcă foto</button>
+              <div id="honey-status" class="upload-status"></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Perga</h3>
+            <p>O sursă puternică de vitamine și energie naturală.</p>
+            <div class="upload-section">
+              <div class="image-preview" id="perga-preview"></div>
+              <input type="file" class="file-input" data-category="perga" accept="image/*" multiple>
+              <button class="upload-btn" onclick="triggerUpload('perga')">Încarcă foto</button>
+              <div id="perga-status" class="upload-status"></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Propolis</h3>
+            <p>Antibiotic natural pentru sănătate și imunitate.</p>
+            <div class="upload-section">
+              <div class="image-preview" id="propolis-preview"></div>
+              <input type="file" class="file-input" data-category="propolis" accept="image/*" multiple>
+              <button class="upload-btn" onclick="triggerUpload('propolis')">Încarcă foto</button>
+              <div id="propolis-status" class="upload-status"></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Familii de albine</h3>
+            <p>Oferim roiuri și familii sănătoase de albine Buckfast.</p>
+            <div class="upload-section">
+              <div class="image-preview" id="bee-families-preview"></div>
+              <input type="file" class="file-input" data-category="bee-families" accept="image/*" multiple>
+              <button class="upload-btn" onclick="triggerUpload('bee-families')">Încarcă foto</button>
+              <div id="bee-families-status" class="upload-status"></div>
+            </div>
+          </div>
         </div>
       `,
       ru: `
         <h2>Наша продукция</h2>
         <div class="products">
-          <div class="card"><h3>Натуральный мёд</h3><p>Собран с любовью на семейной пасеке Ребежа, 100% натуральный.</p></div>
-          <div class="card"><h3>Перга</h3><p>Мощный источник витаминов и природной энергии.</p></div>
-          <div class="card"><h3>Прополис</h3><p>Природный антибиотик для здоровья и иммунитета.</p></div>
-          <div class="card"><h3>Отводки пчёл</h3><p>Продаём сильные семьи пчёл породы Карпатка.</p></div>
+          <div class="card">
+            <h3>Натуральный мёд</h3>
+            <p>Собран с любовью на семейной пасеке Ребежа, 100% натуральный.</p>
+            <div class="upload-section">
+              <div class="image-preview" id="honey-preview"></div>
+              <input type="file" class="file-input" data-category="honey" accept="image/*" multiple>
+              <button class="upload-btn" onclick="triggerUpload('honey')">Загрузить фото</button>
+              <div id="honey-status" class="upload-status"></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Перга</h3>
+            <p>Мощный источник витаминов и природной энергии.</p>
+            <div class="upload-section">
+              <div class="image-preview" id="perga-preview"></div>
+              <input type="file" class="file-input" data-category="perga" accept="image/*" multiple>
+              <button class="upload-btn" onclick="triggerUpload('perga')">Загрузить фото</button>
+              <div id="perga-status" class="upload-status"></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Прополис</h3>
+            <p>Природный антибиотик для здоровья и иммунитета.</p>
+            <div class="upload-section">
+              <div class="image-preview" id="propolis-preview"></div>
+              <input type="file" class="file-input" data-category="propolis" accept="image/*" multiple>
+              <button class="upload-btn" onclick="triggerUpload('propolis')">Загрузить фото</button>
+              <div id="propolis-status" class="upload-status"></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Отводки пчёл</h3>
+            <p>Продаём сильные семьи пчёл породы Бакфаст.</p>
+            <div class="upload-section">
+              <div class="image-preview" id="bee-families-preview"></div>
+              <input type="file" class="file-input" data-category="bee-families" accept="image/*" multiple>
+              <button class="upload-btn" onclick="triggerUpload('bee-families')">Загрузить фото</button>
+              <div id="bee-families-status" class="upload-status"></div>
+            </div>
+          </div>
         </div>
       `
     };
@@ -558,10 +310,169 @@
     function setLang(lang) {
       content.innerHTML = texts[lang];
       localStorage.setItem('lang', lang);
+      
+      // Восстанавливаем загруженные фото после смены языка
+      loadImages();
+      
+      // Добавляем обработчики событий для новых элементов
+      addEventListeners();
     }
 
-    const saved = localStorage.getItem('lang') || 'ro';
-    setLang(saved);
+    // Функция для открытия диалога выбора файлов
+    function triggerUpload(category) {
+      const fileInput = document.querySelector(`input[data-category="${category}"]`);
+      fileInput.click();
+    }
+
+    // Добавляем обработчики событий для загрузки файлов
+    function addEventListeners() {
+      document.querySelectorAll('.file-input').forEach(input => {
+        input.addEventListener('change', function(e) {
+          const category = this.getAttribute('data-category');
+          const files = e.target.files;
+          
+          if (files.length > 0) {
+            uploadFiles(category, files);
+          }
+        });
+      });
+    }
+
+    // Загружаем файлы и создаем предпросмотр
+    function uploadFiles(category, files) {
+      const statusElement = document.getElementById(`${category}-status`);
+      statusElement.textContent = 'Загрузка...';
+      
+      // Ограничиваем количество файлов (максимум 5)
+      const maxFiles = 5;
+      const currentImages = document.getElementById(`${category}-preview`).children.length;
+      
+      if (currentImages + files.length > maxFiles) {
+        statusElement.textContent = `Максимум ${maxFiles} фото на категорию`;
+        return;
+      }
+      
+      // Обрабатываем каждый файл
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        
+        // Проверяем тип файла
+        if (!file.type.match('image.*')) {
+          statusElement.textContent = 'Пожалуйста, выберите только изображения';
+          continue;
+        }
+        
+        // Проверяем размер файла (максимум 5MB)
+        if (file.size > 5 * 1024 * 1024) {
+          statusElement.textContent = 'Размер файла не должен превышать 5MB';
+          continue;
+        }
+        
+        // Создаем предпросмотр
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+          const previewContainer = document.getElementById(`${category}-preview`);
+          const imageContainer = document.createElement('div');
+          imageContainer.className = 'image-container';
+          
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.className = 'preview-image';
+          
+          const deleteBtn = document.createElement('button');
+          deleteBtn.className = 'delete-btn';
+          deleteBtn.innerHTML = '×';
+          deleteBtn.onclick = function() {
+            imageContainer.remove();
+            saveImagesToLocalStorage();
+          };
+          
+          imageContainer.appendChild(img);
+          imageContainer.appendChild(deleteBtn);
+          previewContainer.appendChild(imageContainer);
+          
+          // Сохраняем в локальное хранилище
+          saveImagesToLocalStorage();
+          
+          statusElement.textContent = 'Фото загружено успешно!';
+          setTimeout(() => {
+            statusElement.textContent = '';
+          }, 3000);
+        };
+        
+        reader.readAsDataURL(file);
+      }
+      
+      // Сбрасываем значение input
+      document.querySelector(`input[data-category="${category}"]`).value = '';
+    }
+
+    // Сохраняем все изображения в локальное хранилище
+    function saveImagesToLocalStorage() {
+      const categories = ['honey', 'perga', 'propolis', 'bee-families'];
+      const allImages = {};
+      
+      categories.forEach(category => {
+        const previewContainer = document.getElementById(`${category}-preview`);
+        const images = [];
+        
+        // Собираем все изображения для категории
+        for (let i = 0; i < previewContainer.children.length; i++) {
+          const img = previewContainer.children[i].querySelector('img');
+          if (img) {
+            images.push(img.src);
+          }
+        }
+        
+        allImages[category] = images;
+      });
+      
+      // Сохраняем в локальное хранилище
+      localStorage.setItem('productImages', JSON.stringify(allImages));
+    }
+
+    // Загружаем изображения из локального хранилища
+    function loadImages() {
+      const savedImages = localStorage.getItem('productImages');
+      
+      if (savedImages) {
+        const allImages = JSON.parse(savedImages);
+        
+        Object.keys(allImages).forEach(category => {
+          const previewContainer = document.getElementById(`${category}-preview`);
+          
+          if (previewContainer) {
+            previewContainer.innerHTML = '';
+            
+            allImages[category].forEach(imageSrc => {
+              const imageContainer = document.createElement('div');
+              imageContainer.className = 'image-container';
+              
+              const img = document.createElement('img');
+              img.src = imageSrc;
+              img.className = 'preview-image';
+              
+              const deleteBtn = document.createElement('button');
+              deleteBtn.className = 'delete-btn';
+              deleteBtn.innerHTML = '×';
+              deleteBtn.onclick = function() {
+                imageContainer.remove();
+                saveImagesToLocalStorage();
+              };
+              
+              imageContainer.appendChild(img);
+              imageContainer.appendChild(deleteBtn);
+              previewContainer.appendChild(imageContainer);
+            });
+          }
+        });
+      }
+    }
+
+    // Инициализация при загрузке страницы
+    const savedLang = localStorage.getItem('lang') || 'ro';
+    setLang(savedLang);
   </script>
 </body>
 </html>
