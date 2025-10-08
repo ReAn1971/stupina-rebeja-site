@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stupina Familiei Rebeja</title>
+  <title>STUPINA FAMILIEI REBEJA</title>
   <style>
     body {
       margin: 0;
@@ -13,6 +13,7 @@
       background: url('https://upload.wikimedia.org/wikipedia/commons/5/5a/Honey_bee_on_flower_2.jpg') no-repeat center center fixed;
       background-size: cover;
       position: relative;
+      transition: background-image 0.5s ease-in-out;
     }
 
     /* затемнение для читаемости текста */
@@ -118,83 +119,77 @@
       height: 35px;
     }
 
-    /* Новые стили для загрузки фото */
+    /* Новые стили для галереи фонов */
+    .background-gallery {
+      margin: 20px auto;
+      max-width: 1000px;
+      padding: 0 1rem;
+    }
+
+    .background-gallery h3 {
+      color: #4b3b05;
+      margin-bottom: 15px;
+    }
+
+    .gallery-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .background-option {
+      width: 100px;
+      height: 70px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: all 0.3s;
+      object-fit: cover;
+    }
+
+    .background-option:hover {
+      transform: scale(1.05);
+      border-color: #f5c400;
+    }
+
+    .background-option.active {
+      border-color: #f5c400;
+      box-shadow: 0 0 10px rgba(245, 196, 0, 0.7);
+    }
+
     .upload-section {
-      margin-top: 15px;
-      padding-top: 15px;
-      border-top: 1px dashed #f5c400;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .upload-btn {
+      background-color: #4b3b05;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .upload-btn:hover {
+      background-color: #f5c400;
     }
 
     .file-input {
       display: none;
     }
-
-    .upload-btn {
-      background-color: #f5c400;
-      color: white;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: background-color 0.3s;
-      margin-bottom: 10px;
-    }
-
-    .upload-btn:hover {
-      background-color: #e0b500;
-    }
-
-    .image-preview {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 10px;
-      min-height: 60px;
-      justify-content: center;
-    }
-
-    .preview-image {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-      border-radius: 8px;
-      border: 2px solid #f5c400;
-    }
-
-    .upload-status {
-      margin-top: 5px;
-      font-size: 0.8rem;
-      color: #666;
-    }
-
-    .delete-btn {
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      background: red;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      cursor: pointer;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .image-container {
-      position: relative;
-      display: inline-block;
-    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Stupina Familiei Rebeja</h1>
-    <p>Apicultură naturală din Șișcani, Moldova</p>
+    <h1>STUPINA FAMILIEI REBEJA</h1>
+    <p>***Miere naturală din Șișcani***</p>
     <div class="lang-switch">
       <button onclick="setLang('ro')">🇲🇩 Română</button>
       <button onclick="setLang('ru')">🇷🇺 Русский</button>
@@ -202,6 +197,24 @@
   </header>
 
   <section id="content"></section>
+
+  <!-- Галерея фонов -->
+  <div class="background-gallery">
+    <h3 id="gallery-title">Alege fundalul</h3>
+    <div class="gallery-container">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Honey_bee_on_flower_2.jpg" class="background-option active" onclick="changeBackground(this.src)" alt="Background 1">
+      <img src="https://images.unsplash.com/photo-1580651315532-41a3ae9e94a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="background-option" onclick="changeBackground(this.src)" alt="Background 2">
+      <img src="https://images.unsplash.com/photo-1580651315532-41a3ae9e94a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="background-option" onclick="changeBackground(this.src)" alt="Background 3">
+      <img src="https://images.unsplash.com/photo-1580651315532-41a3ae9e94a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="background-option" onclick="changeBackground(this.src)" alt="Background 4">
+    </div>
+    
+    <!-- Секция для загрузки своих фото -->
+    <div class="upload-section">
+      <p id="upload-text">Încarcă-ți fotografia</p>
+      <input type="file" id="background-upload" class="file-input" accept="image/*">
+      <button class="upload-btn" onclick="document.getElementById('background-upload').click()">Încarcă</button>
+    </div>
+  </div>
 
   <footer>
     <p>📍 Șișcani, Moldova | 📞 078489829 | ✉️ anatolierebeja@gmail.com</p>
@@ -215,264 +228,85 @@
     const content = document.getElementById('content');
 
     const texts = {
-      ro: `
-        <h2>Produsele noastre</h2>
-        <div class="products">
-          <div class="card">
-            <h3>Miere naturală</h3>
-            <p>Recoltată cu grijă din stupina familiei Rebeja, 100% naturală.</p>
-            <div class="upload-section">
-              <div class="image-preview" id="honey-preview"></div>
-              <input type="file" class="file-input" data-category="honey" accept="image/*" multiple>
-              <button class="upload-btn" onclick="triggerUpload('honey')">Încarcă foto</button>
-              <div id="honey-status" class="upload-status"></div>
-            </div>
+      ro: {
+        main: `
+          <h2>Produsele noastre</h2>
+          <div class="products">
+            <div class="card"><h3>Miere naturală</h3><p>Recoltată cu grijă din stupina familiei Rebeja, 100% naturală.</p></div>
+            <div class="card"><h3>Perga</h3><p>O sursă puternică de vitamine și energie naturală.</p></div>
+            <div class="card"><h3>Propolis</h3><p>Antibiotic natural pentru sănătate și imunitate.</p></div>
+            <div class="card"><h3>Familii de albine</h3><p>Oferim roiuri și familii sănătoase de albine Buckfast.</p></div>
           </div>
-          <div class="card">
-            <h3>Perga</h3>
-            <p>O sursă puternică de vitamine și energie naturală.</p>
-            <div class="upload-section">
-              <div class="image-preview" id="perga-preview"></div>
-              <input type="file" class="file-input" data-category="perga" accept="image/*" multiple>
-              <button class="upload-btn" onclick="triggerUpload('perga')">Încarcă foto</button>
-              <div id="perga-status" class="upload-status"></div>
-            </div>
+        `,
+        gallery: "Alege fundalul",
+        upload: "Încarcă-ți fotografia"
+      },
+      ru: {
+        main: `
+          <h2>Наша продукция</h2>
+          <div class="products">
+            <div class="card"><h3>Натуральный мёд</h3><p>Собран с любовью на семейной пасеке Ребежа, 100% натуральный.</p></div>
+            <div class="card"><h3>Перга</h3><p>Мощный источник витаминов и природной энергии.</p></div>
+            <div class="card"><h3>Прополис</h3><p>Природный антибиотик для здоровья и иммунитета.</p></div>
+            <div class="card"><h3>Отводки пчёл</h3><p>Продаём сильные семьи пчёл породы Бакфаст.</p></div>
           </div>
-          <div class="card">
-            <h3>Propolis</h3>
-            <p>Antibiotic natural pentru sănătate și imunitate.</p>
-            <div class="upload-section">
-              <div class="image-preview" id="propolis-preview"></div>
-              <input type="file" class="file-input" data-category="propolis" accept="image/*" multiple>
-              <button class="upload-btn" onclick="triggerUpload('propolis')">Încarcă foto</button>
-              <div id="propolis-status" class="upload-status"></div>
-            </div>
-          </div>
-          <div class="card">
-            <h3>Familii de albine</h3>
-            <p>Oferim roiuri și familii sănătoase de rasa Carpatina.</p>
-            <div class="upload-section">
-              <div class="image-preview" id="bee-families-preview"></div>
-              <input type="file" class="file-input" data-category="bee-families" accept="image/*" multiple>
-              <button class="upload-btn" onclick="triggerUpload('bee-families')">Încarcă foto</button>
-              <div id="bee-families-status" class="upload-status"></div>
-            </div>
-          </div>
-        </div>
-      `,
-      ru: `
-        <h2>Наша продукция</h2>
-        <div class="products">
-          <div class="card">
-            <h3>Натуральный мёд</h3>
-            <p>Собран с любовью на семейной пасеке Ребежа, 100% натуральный.</p>
-            <div class="upload-section">
-              <div class="image-preview" id="honey-preview"></div>
-              <input type="file" class="file-input" data-category="honey" accept="image/*" multiple>
-              <button class="upload-btn" onclick="triggerUpload('honey')">Загрузить фото</button>
-              <div id="honey-status" class="upload-status"></div>
-            </div>
-          </div>
-          <div class="card">
-            <h3>Перга</h3>
-            <p>Мощный источник витаминов и природной энергии.</p>
-            <div class="upload-section">
-              <div class="image-preview" id="perga-preview"></div>
-              <input type="file" class="file-input" data-category="perga" accept="image/*" multiple>
-              <button class="upload-btn" onclick="triggerUpload('perga')">Загрузить фото</button>
-              <div id="perga-status" class="upload-status"></div>
-            </div>
-          </div>
-          <div class="card">
-            <h3>Прополис</h3>
-            <p>Природный антибиотик для здоровья и иммунитета.</p>
-            <div class="upload-section">
-              <div class="image-preview" id="propolis-preview"></div>
-              <input type="file" class="file-input" data-category="propolis" accept="image/*" multiple>
-              <button class="upload-btn" onclick="triggerUpload('propolis')">Загрузить фото</button>
-              <div id="propolis-status" class="upload-status"></div>
-            </div>
-          </div>
-          <div class="card">
-            <h3>Отводки пчёл</h3>
-            <p>Продаём сильные семьи пчёл породы Карпатка.</p>
-            <div class="upload-section">
-              <div class="image-preview" id="bee-families-preview"></div>
-              <input type="file" class="file-input" data-category="bee-families" accept="image/*" multiple>
-              <button class="upload-btn" onclick="triggerUpload('bee-families')">Загрузить фото</button>
-              <div id="bee-families-status" class="upload-status"></div>
-            </div>
-          </div>
-        </div>
-      `
+        `,
+        gallery: "Выберите фон",
+        upload: "Загрузите своё фото"
+      }
     };
 
     function setLang(lang) {
-      content.innerHTML = texts[lang];
+      content.innerHTML = texts[lang].main;
+      document.getElementById('gallery-title').textContent = texts[lang].gallery;
+      document.getElementById('upload-text').textContent = texts[lang].upload;
       localStorage.setItem('lang', lang);
-      
-      // Восстанавливаем загруженные фото после смены языка
-      loadImages();
-      
-      // Добавляем обработчики событий для новых элементов
-      addEventListeners();
     }
 
-    // Функция для открытия диалога выбора файлов
-    function triggerUpload(category) {
-      const fileInput = document.querySelector(`input[data-category="${category}"]`);
-      fileInput.click();
-    }
-
-    // Добавляем обработчики событий для загрузки файлов
-    function addEventListeners() {
-      document.querySelectorAll('.file-input').forEach(input => {
-        input.addEventListener('change', function(e) {
-          const category = this.getAttribute('data-category');
-          const files = e.target.files;
-          
-          if (files.length > 0) {
-            uploadFiles(category, files);
-          }
-        });
+    // Функция смены фона
+    function changeBackground(imageUrl) {
+      document.body.style.backgroundImage = `url('${imageUrl}')`;
+      
+      // Обновляем активную миниатюру
+      document.querySelectorAll('.background-option').forEach(img => {
+        img.classList.remove('active');
       });
+      event.target.classList.add('active');
+      
+      // Сохраняем выбор в локальное хранилище
+      localStorage.setItem('background', imageUrl);
     }
 
-    // Загружаем файлы и создаем предпросмотр
-    function uploadFiles(category, files) {
-      const statusElement = document.getElementById(`${category}-status`);
-      statusElement.textContent = 'Загрузка...';
-      
-      // Ограничиваем количество файлов (максимум 5)
-      const maxFiles = 5;
-      const currentImages = document.getElementById(`${category}-preview`).children.length;
-      
-      if (currentImages + files.length > maxFiles) {
-        statusElement.textContent = `Максимум ${maxFiles} фото на категорию`;
-        return;
-      }
-      
-      // Обрабатываем каждый файл
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        
-        // Проверяем тип файла
-        if (!file.type.match('image.*')) {
-          statusElement.textContent = 'Пожалуйста, выберите только изображения';
-          continue;
-        }
-        
-        // Проверяем размер файла (максимум 5MB)
-        if (file.size > 5 * 1024 * 1024) {
-          statusElement.textContent = 'Размер файла не должен превышать 5MB';
-          continue;
-        }
-        
-        // Создаем предпросмотр
+    // Загрузка собственного фона
+    document.getElementById('background-upload').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
         const reader = new FileReader();
-        
         reader.onload = function(e) {
-          const previewContainer = document.getElementById(`${category}-preview`);
-          const imageContainer = document.createElement('div');
-          imageContainer.className = 'image-container';
+          changeBackground(e.target.result);
           
-          const img = document.createElement('img');
-          img.src = e.target.result;
-          img.className = 'preview-image';
-          
-          const deleteBtn = document.createElement('button');
-          deleteBtn.className = 'delete-btn';
-          deleteBtn.innerHTML = '×';
-          deleteBtn.onclick = function() {
-            imageContainer.remove();
-            saveImagesToLocalStorage();
-          };
-          
-          imageContainer.appendChild(img);
-          imageContainer.appendChild(deleteBtn);
-          previewContainer.appendChild(imageContainer);
-          
-          // Сохраняем в локальное хранилище
-          saveImagesToLocalStorage();
-          
-          statusElement.textContent = 'Фото загружено успешно!';
-          setTimeout(() => {
-            statusElement.textContent = '';
-          }, 3000);
+          // Добавляем новое изображение в галерею
+          const gallery = document.querySelector('.gallery-container');
+          const newImg = document.createElement('img');
+          newImg.src = e.target.result;
+          newImg.className = 'background-option';
+          newImg.onclick = function() { changeBackground(this.src); };
+          gallery.appendChild(newImg);
         };
-        
         reader.readAsDataURL(file);
       }
-      
-      // Сбрасываем значение input
-      document.querySelector(`input[data-category="${category}"]`).value = '';
-    }
+    });
 
-    // Сохраняем все изображения в локальное хранилище
-    function saveImagesToLocalStorage() {
-      const categories = ['honey', 'perga', 'propolis', 'bee-families'];
-      const allImages = {};
+    // Восстановление фона и языка при загрузке страницы
+    window.onload = function() {
+      const savedLang = localStorage.getItem('lang') || 'ro';
+      setLang(savedLang);
       
-      categories.forEach(category => {
-        const previewContainer = document.getElementById(`${category}-preview`);
-        const images = [];
-        
-        // Собираем все изображения для категории
-        for (let i = 0; i < previewContainer.children.length; i++) {
-          const img = previewContainer.children[i].querySelector('img');
-          if (img) {
-            images.push(img.src);
-          }
-        }
-        
-        allImages[category] = images;
-      });
-      
-      // Сохраняем в локальное хранилище
-      localStorage.setItem('productImages', JSON.stringify(allImages));
-    }
-
-    // Загружаем изображения из локального хранилища
-    function loadImages() {
-      const savedImages = localStorage.getItem('productImages');
-      
-      if (savedImages) {
-        const allImages = JSON.parse(savedImages);
-        
-        Object.keys(allImages).forEach(category => {
-          const previewContainer = document.getElementById(`${category}-preview`);
-          
-          if (previewContainer) {
-            previewContainer.innerHTML = '';
-            
-            allImages[category].forEach(imageSrc => {
-              const imageContainer = document.createElement('div');
-              imageContainer.className = 'image-container';
-              
-              const img = document.createElement('img');
-              img.src = imageSrc;
-              img.className = 'preview-image';
-              
-              const deleteBtn = document.createElement('button');
-              deleteBtn.className = 'delete-btn';
-              deleteBtn.innerHTML = '×';
-              deleteBtn.onclick = function() {
-                imageContainer.remove();
-                saveImagesToLocalStorage();
-              };
-              
-              imageContainer.appendChild(img);
-              imageContainer.appendChild(deleteBtn);
-              previewContainer.appendChild(imageContainer);
-            });
-          }
-        });
+      const savedBackground = localStorage.getItem('background');
+      if (savedBackground) {
+        document.body.style.backgroundImage = `url('${savedBackground}')`;
       }
-    }
-
-    // Инициализация при загрузке страницы
-    const savedLang = localStorage.getItem('lang') || 'ro';
-    setLang(savedLang);
+    };
   </script>
 </body>
 </html>
