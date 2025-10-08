@@ -1,16 +1,4 @@
-const texts = {
-  ro: `
-    <h2>Produsele noastre</h2>
-    <p class="highlight-text">***Miere naturală din Șișcani***</p>
-    <div class="products">
-      <div class="card"><h3>Miere naturală</h3><p>Recoltată cu grijă din stupina familiei Rebeja, 100% naturală.</p></div>
-      <div class="card"><h3>Perga</h3><p>O sursă puternică de vitamine și energie naturală.</p></div>
-      <div class="card"><h3>Propolis</h3><p>Antibiotic natural pentru sănătate și imunitate.</p></div>
-      <div class="card"><h3>Familii de albine</h3><p>Oferim roiuri și familii sănătoase de albine rasa Carpatina.</p></div>
-    </div>
-  `,
-  // ... аналогично для русского языка
-};<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
@@ -25,7 +13,6 @@ const texts = {
       background: url('https://upload.wikimedia.org/wikipedia/commons/5/5a/Honey_bee_on_flower_2.jpg') no-repeat center center fixed;
       background-size: cover;
       position: relative;
-      transition: background-image 0.5s ease-in-out;
     }
 
     /* затемнение для читаемости текста */
@@ -131,77 +118,23 @@ const texts = {
       height: 35px;
     }
 
-    /* Новые стили для галереи фонов */
-    .background-gallery {
-      margin: 20px auto;
-      max-width: 1000px;
-      padding: 0 1rem;
-    }
-
-    .background-gallery h3 {
-      color: #4b3b05;
-      margin-bottom: 15px;
-    }
-
-    .gallery-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .background-option {
-      width: 100px;
-      height: 70px;
-      border-radius: 8px;
-      cursor: pointer;
-      border: 3px solid transparent;
-      transition: all 0.3s;
-      object-fit: cover;
-    }
-
-    .background-option:hover {
-      transform: scale(1.05);
-      border-color: #f5c400;
-    }
-
-    .background-option.active {
-      border-color: #f5c400;
-      box-shadow: 0 0 10px rgba(245, 196, 0, 0.7);
-    }
-
-    .upload-section {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 20px;
-    }
-
-    .upload-btn {
-      background-color: #4b3b05;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s;
-    }
-
-    .upload-btn:hover {
-      background-color: #f5c400;
-    }
-
-    .file-input {
-      display: none;
+    /* Стиль для выделенного абзаца */
+    .highlight-text {
+      font-size: 1.3rem; /* Чуть больше обычного шрифта */
+      color: #000000; /* Черный цвет */
+      font-weight: bold; /* Жирное начертание */
+      text-align: center; /* Выравнивание по центру */
+      margin: 20px 0; /* Отступы сверху и снизу */
+      padding: 10px; /* Внутренние отступы */
+      background-color: rgba(255, 255, 255, 0.7); /* Легкий белый фон для лучшей читаемости */
+      border-radius: 8px; /* Закругленные углы */
     }
   </style>
 </head>
 <body>
   <header>
     <h1>STUPINA FAMILIEI REBEJA</h1>
-    <p>***Miere naturală din Șișcani***</p>
+    <p>Miere naturală din Șișcani</p>
     <div class="lang-switch">
       <button onclick="setLang('ro')">🇲🇩 Română</button>
       <button onclick="setLang('ru')">🇷🇺 Русский</button>
@@ -210,23 +143,8 @@ const texts = {
 
   <section id="content"></section>
 
-  <!-- Галерея фонов -->
-  <div class="background-gallery">
-    <h3 id="gallery-title">Alege fundalul</h3>
-    <div class="gallery-container">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Honey_bee_on_flower_2.jpg" class="background-option active" onclick="changeBackground(this.src)" alt="Background 1">
-      <img src="https://images.unsplash.com/photo-1580651315532-41a3ae9e94a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="background-option" onclick="changeBackground(this.src)" alt="Background 2">
-      <img src="https://images.unsplash.com/photo-1580651315532-41a3ae9e94a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="background-option" onclick="changeBackground(this.src)" alt="Background 3">
-      <img src="https://images.unsplash.com/photo-1580651315532-41a3ae9e94a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="background-option" onclick="changeBackground(this.src)" alt="Background 4">
-    </div>
-    
-    <!-- Секция для загрузки своих фото -->
-    <div class="upload-section">
-      <p id="upload-text">Încarcă-ți fotografia</p>
-      <input type="file" id="background-upload" class="file-input" accept="image/*">
-      <button class="upload-btn" onclick="document.getElementById('background-upload').click()">Încarcă</button>
-    </div>
-  </div>
+  <!-- Добавленный абзац с измененным стилем -->
+  <p class="highlight-text">***Miere naturală din Șișcani***</p>
 
   <footer>
     <p>📍 Șișcani, Moldova | 📞 078489829 | ✉️ anatolierebeja@gmail.com</p>
@@ -240,85 +158,33 @@ const texts = {
     const content = document.getElementById('content');
 
     const texts = {
-      ro: {
-        main: `
-          <h2>Produsele noastre</h2>
-          <div class="products">
-            <div class="card"><h3>Miere naturală</h3><p>Recoltată cu grijă din stupina familiei Rebeja, 100% naturală.</p></div>
-            <div class="card"><h3>Perga</h3><p>O sursă puternică de vitamine și energie naturală.</p></div>
-            <div class="card"><h3>Propolis</h3><p>Antibiotic natural pentru sănătate și imunitate.</p></div>
-            <div class="card"><h3>Familii de albine</h3><p>Oferim roiuri și familii sănătoase de albine rasa Carpatina.</p></div>
-          </div>
-        `,
-        gallery: "Alege fundalul",
-        upload: "Încarcă-ți fotografia"
-      },
-      ru: {
-        main: `
-          <h2>Наша продукция</h2>
-          <div class="products">
-            <div class="card"><h3>Натуральный мёд</h3><p>Собран с любовью на семейной пасеке Ребежа, 100% натуральный.</p></div>
-            <div class="card"><h3>Перга</h3><p>Мощный источник витаминов и природной энергии.</p></div>
-            <div class="card"><h3>Прополис</h3><p>Природный антибиотик для здоровья и иммунитета.</p></div>
-            <div class="card"><h3>Отводки пчёл</h3><p>Продаём сильные семьи пчёл породы Карпатка.</p></div>
-          </div>
-        `,
-        gallery: "Выберите фон",
-        upload: "Загрузите своё фото"
-      }
+      ro: `
+        <h2>Produsele noastre</h2>
+        <div class="products">
+          <div class="card"><h3>Miere naturală</h3><p>Recoltată cu grijă din stupina familiei Rebeja, 100% naturală.</p></div>
+          <div class="card"><h3>Perga</h3><p>O sursă puternică de vitamine și energie naturală.</p></div>
+          <div class="card"><h3>Propolis</h3><p>Antibiotic natural pentru sănătate și imunitate.</p></div>
+          <div class="card"><h3>Familii de albine</h3><p>Oferim roiuri și familii sănătoase de albine rasa Carpatina.</p></div>
+        </div>
+      `,
+      ru: `
+        <h2>Наша продукция</h2>
+        <div class="products">
+          <div class="card"><h3>Натуральный мёд</h3><p>Собран с любовью на семейной пасеке Ребежа, 100% натуральный.</p></div>
+          <div class="card"><h3>Перга</h3><p>Мощный источник витаминов и природной энергии.</p></div>
+          <div class="card"><h3>Прополис</h3><p>Природный антибиотик для здоровья и иммунитета.</p></div>
+          <div class="card"><h3>Отводки пчёл</h3><p>Продаём сильные семьи пчёл породы Карпатка.</p></div>
+        </div>
+      `
     };
 
     function setLang(lang) {
-      content.innerHTML = texts[lang].main;
-      document.getElementById('gallery-title').textContent = texts[lang].gallery;
-      document.getElementById('upload-text').textContent = texts[lang].upload;
+      content.innerHTML = texts[lang];
       localStorage.setItem('lang', lang);
     }
 
-    // Функция смены фона
-    function changeBackground(imageUrl) {
-      document.body.style.backgroundImage = `url('${imageUrl}')`;
-      
-      // Обновляем активную миниатюру
-      document.querySelectorAll('.background-option').forEach(img => {
-        img.classList.remove('active');
-      });
-      event.target.classList.add('active');
-      
-      // Сохраняем выбор в локальное хранилище
-      localStorage.setItem('background', imageUrl);
-    }
-
-    // Загрузка собственного фона
-    document.getElementById('background-upload').addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          changeBackground(e.target.result);
-          
-          // Добавляем новое изображение в галерею
-          const gallery = document.querySelector('.gallery-container');
-          const newImg = document.createElement('img');
-          newImg.src = e.target.result;
-          newImg.className = 'background-option';
-          newImg.onclick = function() { changeBackground(this.src); };
-          gallery.appendChild(newImg);
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-
-    // Восстановление фона и языка при загрузке страницы
-    window.onload = function() {
-      const savedLang = localStorage.getItem('lang') || 'ro';
-      setLang(savedLang);
-      
-      const savedBackground = localStorage.getItem('background');
-      if (savedBackground) {
-        document.body.style.backgroundImage = `url('${savedBackground}')`;
-      }
-    };
+    const saved = localStorage.getItem('lang') || 'ro';
+    setLang(saved);
   </script>
 </body>
 </html>
