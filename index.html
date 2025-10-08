@@ -117,6 +117,78 @@
       width: 35px;
       height: 35px;
     }
+
+    /* Новые стили для загрузки фото */
+    .upload-section {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px dashed #f5c400;
+    }
+
+    .file-input {
+      display: none;
+    }
+
+    .upload-btn {
+      background-color: #f5c400;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+      margin-bottom: 10px;
+    }
+
+    .upload-btn:hover {
+      background-color: #e0b500;
+    }
+
+    .image-preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+      min-height: 60px;
+      justify-content: center;
+    }
+
+    .preview-image {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid #f5c400;
+    }
+
+    .upload-status {
+      margin-top: 5px;
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    .delete-btn {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-container {
+      position: relative;
+      display: inline-block;
+    }
   </style>
 </head>
 <body>
@@ -146,19 +218,91 @@
       ro: `
         <h2>Produsele noastre</h2>
         <div class="products">
-          <div class="card"><h3>Miere naturală</h3><p>Recoltată cu grijă din stupina familiei Rebeja, 100% naturală.</p></div>
-          <div class="card"><h3>Perga</h3><p>O sursă puternică de vitamine și energie naturală.</p></div>
-          <div class="card"><h3>Propolis</h3><p>Antibiotic natural pentru sănătate și imunitate.</p></div>
-          <div class="card"><h3>Familii de albine</h3><p>Oferim roiuri și familii sănătoase de albine Carpatina.</p></div>
+          <div class="card">
+            <h3>Miere naturală</h3>
+            <p>Recoltată cu grijă din stupina familiei Rebeja, 100% naturală.</p>
+            <div class="upload-section">
+              <div class="image-preview" id="honey-preview"></div>
+              <input type="file" class="file-input" data-category="honey" accept="image/*" multiple>
+              <button class="upload-btn" onclick="triggerUpload('honey')">Încarcă foto</button>
+              <div id="honey-status" class="upload-status"></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Perga</h3>
+            <p>O sursă puternică de vitamine și energie naturală.</p>
+            <div class="upload-section">
+              <div class="image-preview" id="perga-preview"></div>
+              <input type="file" class="file-input" data-category="perga" accept="image/*" multiple>
+              <button class="upload-btn" onclick="triggerUpload('perga')">Încarcă foto</button>
+              <div id="perga-status" class="upload-status"></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Propolis</h3>
+            <p>Antibiotic natural pentru sănătate și imunitate.</p>
+            <div class="upload-section">
+              <div class="image-preview" id="propolis-preview"></div>
+              <input type="file" class="file-input" data-category="propolis" accept="image/*" multiple>
+              <button class="upload-btn" onclick="triggerUpload('propolis')">Încarcă foto</button>
+              <div id="propolis-status" class="upload-status"></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Familii de albine</h3>
+            <p>Oferim roiuri și familii sănătoase de rasa Carpatina.</p>
+            <div class="upload-section">
+              <div class="image-preview" id="bee-families-preview"></div>
+              <input type="file" class="file-input" data-category="bee-families" accept="image/*" multiple>
+              <button class="upload-btn" onclick="triggerUpload('bee-families')">Încarcă foto</button>
+              <div id="bee-families-status" class="upload-status"></div>
+            </div>
+          </div>
         </div>
       `,
       ru: `
         <h2>Наша продукция</h2>
         <div class="products">
-          <div class="card"><h3>Натуральный мёд</h3><p>Собран с любовью на семейной пасеке Ребежа, 100% натуральный.</p></div>
-          <div class="card"><h3>Перга</h3><p>Мощный источник витаминов и природной энергии.</p></div>
-          <div class="card"><h3>Прополис</h3><p>Природный антибиотик для здоровья и иммунитета.</p></div>
-          <div class="card"><h3>Отводки пчёл</h3><p>Продаём сильные семьи пчёл породы Карпатка.</p></div>
+          <div class="card">
+            <h3>Натуральный мёд</h3>
+            <p>Собран с любовью на семейной пасеке Ребежа, 100% натуральный.</p>
+            <div class="upload-section">
+              <div class="image-preview" id="honey-preview"></div>
+              <input type="file" class="file-input" data-category="honey" accept="image/*" multiple>
+              <button class="upload-btn" onclick="triggerUpload('honey')">Загрузить фото</button>
+              <div id="honey-status" class="upload-status"></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Перга</h3>
+            <p>Мощный источник витаминов и природной энергии.</p>
+            <div class="upload-section">
+              <div class="image-preview" id="perga-preview"></div>
+              <input type="file" class="file-input" data-category="perga" accept="image/*" multiple>
+              <button class="upload-btn" onclick="triggerUpload('perga')">Загрузить фото</button>
+              <div id="perga-status" class="upload-status"></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Прополис</h3>
+            <p>Природный антибиотик для здоровья и иммунитета.</p>
+            <div class="upload-section">
+              <div class="image-preview" id="propolis-preview"></div>
+              <input type="file" class="file-input" data-category="propolis" accept="image/*" multiple>
+              <button class="upload-btn" onclick="triggerUpload('propolis')">Загрузить фото</button>
+              <div id="propolis-status" class="upload-status"></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Отводки пчёл</h3>
+            <p>Продаём сильные семьи пчёл породы Карпатка.</p>
+            <div class="upload-section">
+              <div class="image-preview" id="bee-families-preview"></div>
+              <input type="file" class="file-input" data-category="bee-families" accept="image/*" multiple>
+              <button class="upload-btn" onclick="triggerUpload('bee-families')">Загрузить фото</button>
+              <div id="bee-families-status" class="upload-status"></div>
+            </div>
+          </div>
         </div>
       `
     };
@@ -166,10 +310,169 @@
     function setLang(lang) {
       content.innerHTML = texts[lang];
       localStorage.setItem('lang', lang);
+      
+      // Восстанавливаем загруженные фото после смены языка
+      loadImages();
+      
+      // Добавляем обработчики событий для новых элементов
+      addEventListeners();
     }
 
-    const saved = localStorage.getItem('lang') || 'ro';
-    setLang(saved);
+    // Функция для открытия диалога выбора файлов
+    function triggerUpload(category) {
+      const fileInput = document.querySelector(`input[data-category="${category}"]`);
+      fileInput.click();
+    }
+
+    // Добавляем обработчики событий для загрузки файлов
+    function addEventListeners() {
+      document.querySelectorAll('.file-input').forEach(input => {
+        input.addEventListener('change', function(e) {
+          const category = this.getAttribute('data-category');
+          const files = e.target.files;
+          
+          if (files.length > 0) {
+            uploadFiles(category, files);
+          }
+        });
+      });
+    }
+
+    // Загружаем файлы и создаем предпросмотр
+    function uploadFiles(category, files) {
+      const statusElement = document.getElementById(`${category}-status`);
+      statusElement.textContent = 'Загрузка...';
+      
+      // Ограничиваем количество файлов (максимум 5)
+      const maxFiles = 5;
+      const currentImages = document.getElementById(`${category}-preview`).children.length;
+      
+      if (currentImages + files.length > maxFiles) {
+        statusElement.textContent = `Максимум ${maxFiles} фото на категорию`;
+        return;
+      }
+      
+      // Обрабатываем каждый файл
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        
+        // Проверяем тип файла
+        if (!file.type.match('image.*')) {
+          statusElement.textContent = 'Пожалуйста, выберите только изображения';
+          continue;
+        }
+        
+        // Проверяем размер файла (максимум 5MB)
+        if (file.size > 5 * 1024 * 1024) {
+          statusElement.textContent = 'Размер файла не должен превышать 5MB';
+          continue;
+        }
+        
+        // Создаем предпросмотр
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+          const previewContainer = document.getElementById(`${category}-preview`);
+          const imageContainer = document.createElement('div');
+          imageContainer.className = 'image-container';
+          
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.className = 'preview-image';
+          
+          const deleteBtn = document.createElement('button');
+          deleteBtn.className = 'delete-btn';
+          deleteBtn.innerHTML = '×';
+          deleteBtn.onclick = function() {
+            imageContainer.remove();
+            saveImagesToLocalStorage();
+          };
+          
+          imageContainer.appendChild(img);
+          imageContainer.appendChild(deleteBtn);
+          previewContainer.appendChild(imageContainer);
+          
+          // Сохраняем в локальное хранилище
+          saveImagesToLocalStorage();
+          
+          statusElement.textContent = 'Фото загружено успешно!';
+          setTimeout(() => {
+            statusElement.textContent = '';
+          }, 3000);
+        };
+        
+        reader.readAsDataURL(file);
+      }
+      
+      // Сбрасываем значение input
+      document.querySelector(`input[data-category="${category}"]`).value = '';
+    }
+
+    // Сохраняем все изображения в локальное хранилище
+    function saveImagesToLocalStorage() {
+      const categories = ['honey', 'perga', 'propolis', 'bee-families'];
+      const allImages = {};
+      
+      categories.forEach(category => {
+        const previewContainer = document.getElementById(`${category}-preview`);
+        const images = [];
+        
+        // Собираем все изображения для категории
+        for (let i = 0; i < previewContainer.children.length; i++) {
+          const img = previewContainer.children[i].querySelector('img');
+          if (img) {
+            images.push(img.src);
+          }
+        }
+        
+        allImages[category] = images;
+      });
+      
+      // Сохраняем в локальное хранилище
+      localStorage.setItem('productImages', JSON.stringify(allImages));
+    }
+
+    // Загружаем изображения из локального хранилища
+    function loadImages() {
+      const savedImages = localStorage.getItem('productImages');
+      
+      if (savedImages) {
+        const allImages = JSON.parse(savedImages);
+        
+        Object.keys(allImages).forEach(category => {
+          const previewContainer = document.getElementById(`${category}-preview`);
+          
+          if (previewContainer) {
+            previewContainer.innerHTML = '';
+            
+            allImages[category].forEach(imageSrc => {
+              const imageContainer = document.createElement('div');
+              imageContainer.className = 'image-container';
+              
+              const img = document.createElement('img');
+              img.src = imageSrc;
+              img.className = 'preview-image';
+              
+              const deleteBtn = document.createElement('button');
+              deleteBtn.className = 'delete-btn';
+              deleteBtn.innerHTML = '×';
+              deleteBtn.onclick = function() {
+                imageContainer.remove();
+                saveImagesToLocalStorage();
+              };
+              
+              imageContainer.appendChild(img);
+              imageContainer.appendChild(deleteBtn);
+              previewContainer.appendChild(imageContainer);
+            });
+          }
+        });
+      }
+    }
+
+    // Инициализация при загрузке страницы
+    const savedLang = localStorage.getItem('lang') || 'ro';
+    setLang(savedLang);
   </script>
 </body>
 </html>
