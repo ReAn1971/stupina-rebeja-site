@@ -236,4 +236,140 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stupina Familiei Rebeja</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; text-align:center; }
+    .prod-menu {
+      margin: 20px 0;
+    }
+    .prod-menu button {
+      margin: 0 5px;
+      padding: 8px 12px;
+      cursor: pointer;
+      border:1px solid #ccc;
+      background:#f5f5f5;
+      border-radius:5px;
+    }
+    .prod-menu button.active {
+      background:#ffc107;
+      color:#fff;
+      border-color:#ffa000;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap:15px;
+      max-width:1000px;
+      margin:auto;
+      padding: 0 10px;
+    }
+    .card {
+      background:#fff;
+      border-radius:10px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.1);
+      overflow:hidden;
+      cursor: pointer;
+    }
+    .card img {
+      width:100%;
+      height:auto;
+    }
+    .caption {
+      padding:10px;
+      font-size:0.9rem;
+      color:#333;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Stupina Familiei Rebeja</h1>
+  <p>Apicultură naturală din Șișcani, Moldova</p>
+
+  <div class="prod-menu">
+    <button data-cat="all" class="active">Toate</button>
+    <button data-cat="honey">Miere</button>
+    <button data-cat="perga">Perga</button>
+    <button data-cat="propolis">Propolis</button>
+    <button data-cat="nuclee">Familie de albine</button>
+  </div>
+
+  <div class="products-grid" id="products-grid">
+    <!-- карты товаров будут сюда вставляться -->
+  </div>
+
+<script>
+  const products = {
+    honey: [
+      { src:'images/honey.jpg', caption:'Miere — 250/500/1000 g, 100 % pură' },
+      { src:'images/honey2.jpg', caption:'Miere sort special' }
+    ],
+    perga: [
+      { src:'images/perga.jpg', caption:'Perga — vitamină naturală' }
+    ],
+    propolis: [
+      { src:'images/propolis.jpg', caption:'Propolis — sănătate' }
+    ],
+    nuclee: [
+      { src:'images/nuclee.jpg', caption:'Familii de albine robuste' }
+    ]
+  };
+
+  const grid = document.getElementById('products-grid');
+  const buttons = document.querySelectorAll('.prod-menu button');
+
+  function showProducts(category) {
+    grid.innerHTML = '';  // очистить
+    let catList;
+    if (category === 'all') {
+      // собрать все товары из всех категорий
+      Object.keys(products).forEach(cat => {
+        products[cat].forEach(p => {
+          const card = createCard(p);
+          grid.append(card);
+        });
+      });
+    } else {
+      catList = products[category] || [];
+      catList.forEach(p => {
+        const card = createCard(p);
+        grid.append(card);
+      });
+    }
+  }
+
+  function createCard(item) {
+    const div = document.createElement('div');
+    div.className = 'card';
+    const img = document.createElement('img');
+    img.src = item.src;
+    const cap = document.createElement('div');
+    cap.className = 'caption';
+    cap.innerText = item.caption;
+    div.append(img);
+    div.append(cap);
+    return div;
+  }
+
+  // обработка кликов по меню
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.getAttribute('data-cat');
+      showProducts(cat);
+    });
+  });
+
+  // по умолчанию показать все
+  showProducts('all');
+</script>
+
+</body>
+</html>
 
