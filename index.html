@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>STUPINA FAMILIEI REBEJA</title>
-  <!-- Пример подключения Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -45,9 +44,31 @@
     section {
       padding: 2rem 1rem;
     }
-    .products {
+
+    .prod-menu {
+      margin: 20px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+    .prod-menu .cat-btn {
+      padding: 8px 14px;
+      border: 1px solid #aaa;
+      background-color: #fdfdfd;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .prod-menu .cat-btn.active {
+      background-color: #ffc107;
+      border-color: #e0a600;
+      color: #000;
+    }
+
+    .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
       max-width: 1000px;
       margin: auto;
@@ -59,10 +80,15 @@
       padding: 1rem;
       overflow: hidden;
       cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
     }
     .card img {
       width: 100%;
-      height: auto;
+      height: 200px;
+      object-fit: cover;
       border-radius: 8px;
       transition: transform 0.2s;
     }
@@ -109,6 +135,7 @@
       align-items: center; justify-content: center;
       box-shadow: 0 3px 8px rgba(0,0,0,0.3);
       transition: transform 0.2s;
+      z-index: 100;
     }
     .whatsapp-button:hover {
       transform: scale(1.1);
@@ -132,12 +159,15 @@
       position: relative;
       max-width: 90%;
       max-height: 90%;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
     }
     .modal-content img {
       width: auto;
       height: auto;
       max-width: 100%;
-      max-height: 100%;
+      max-height: 70vh;
       border-radius: 8px;
     }
     .modal-close {
@@ -150,6 +180,17 @@
       border-radius: 50%;
       cursor: pointer;
       line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Стили для заголовков на разных языках */
+    .lang-title {
+      display: none;
+    }
+    .lang-title.active {
+      display: block;
     }
   </style>
 </head>
@@ -163,7 +204,20 @@
     </div>
   </header>
 
-  <section id="content"></section>
+  <section id="content">
+    <h2 class="lang-title" data-lang="ro">Produsele Noastre</h2>
+    <h2 class="lang-title" data-lang="ru">Наша продукция</h2>
+
+    <div class="prod-menu">
+      <button class="cat-btn active" data-cat="all">All / Toate</button>
+      <button class="cat-btn" data-cat="honey">Miele / Мёд</button>
+      <button class="cat-btn" data-cat="perga">Perga / Перга</button>
+      <button class="cat-btn" data-cat="propolis">Propolis / Прополис</button>
+      <button class="cat-btn" data-cat="nuclee">Nuclee / Отводки</button>
+    </div>
+
+    <div class="products-grid" id="products-grid"></div>
+  </section>
 
   <footer>
     <p>📍 Șișcani, Moldova | 📞 078489829 | ✉️ anatolierebeja@gmail.com</p>
@@ -173,8 +227,7 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
   </a>
 
-  <!-- Модальное окно -->
-  <div id="modal" class="modal" onclick="closeModal(event)">
+  <div id="modal" class="modal">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal()">×</button>
       <img id="modal-image" src="" alt="Фото продукта">
@@ -183,193 +236,135 @@
   </div>
 
   <script>
-    const content = document.getElementById('content');
-
     const productsData = {
-      ro: [
-        { src: 'images/honey.jpg', caption: 'Miere naturală — 250/500/1000 g, 100 % pură' },
-        { src: 'images/perga.jpg', caption: 'Perga — sursă de vitamine & energie' },
-        { src: 'images/propolis.jpg', caption: 'Propolis — antibiotic natural' },
-        { src: 'images/nuclee.jpg', caption: 'Familie de albine — capacitate puternică' }
-      ],
-      ru: [
-        { src: 'images/honey.jpg', caption: 'Натуральный мёд — 250/500/1000 г, 100 % чистый' },
-        { src: 'images/perga.jpg', caption: 'Перга — источник витаминов и энергии' },
-        { src: 'images/propolis.jpg', caption: 'Прополис — природный антибиотик' },
-        { src: 'images/nuclee.jpg', caption: 'Отводки пчёл — сильные семьи' }
-      ]
+      ro: {
+        honey: [
+          { src: 'images/honey.jpg', caption: 'Miere naturală — 250/500/1000 g, 100 % pură' }
+        ],
+        perga: [
+          { src: 'images/perga.jpg', caption: 'Perga — sursă de vitamine & energie' }
+        ],
+        propolis: [
+          { src: 'images/propolis.jpg', caption: 'Propolis — antibiotic natural' }
+        ],
+        nuclee: [
+          { src: 'images/nuclee.jpg', caption: 'Familie de albine — capacitate puternică' }
+        ]
+      },
+      ru: {
+        honey: [
+          { src: 'images/honey.jpg', caption: 'Натуральный мёд — 250/500/1000 г, 100 % чистый' }
+        ],
+        perga: [
+          { src: 'images/perga.jpg', caption: 'Перга — источник витаминов и энергии' }
+        ],
+        propolis: [
+          { src: 'images/propolis.jpg', caption: 'Прополис — природный антибиотик' }
+        ],
+        nuclee: [
+          { src: 'images/nuclee.jpg', caption: 'Отводки пчёл — сильные семьи' }
+        ]
+      }
     };
 
+    let currentLang = 'ro';
+    let currentCategory = 'all';
+
     function setLang(lang) {
-      const items = productsData[lang];
-      let html = `<h2>${lang === 'ro' ? 'Produsele noastre' : 'Наша продукция'}</h2>`;
-      html += '<div class="products">';
-      items.forEach(it => {
-        html += `
-          <div class="card" onclick="openModal('${it.src}', '${it.caption}')">
-            <img src="${it.src}" alt="">
-            <div class="caption">${it.caption}</div>
-          </div>
-        `;
-      });
-      html += '</div>';
-      content.innerHTML = html;
+      currentLang = lang;
+      updateTitles();
+      renderProducts(currentCategory);
       localStorage.setItem('lang', lang);
+    }
+
+    function updateTitles() {
+      document.querySelectorAll('.lang-title').forEach(title => {
+        title.classList.remove('active');
+        if (title.getAttribute('data-lang') === currentLang) {
+          title.classList.add('active');
+        }
+      });
+    }
+
+    function renderProducts(category) {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = '';
+
+      if (category === 'all') {
+        Object.keys(productsData[currentLang]).forEach(cat => {
+          productsData[currentLang][cat].forEach(product => {
+            grid.appendChild(createProductCard(product));
+          });
+        });
+      } else {
+        productsData[currentLang][category]?.forEach(product => {
+          grid.appendChild(createProductCard(product));
+        });
+      }
+
+      updateCategoryButtons(category);
+      currentCategory = category;
+    }
+
+    function createProductCard(product) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.onclick = () => openModal(product.src, product.caption);
+
+      const img = document.createElement('img');
+      img.src = product.src;
+      img.alt = product.caption;
+
+      const caption = document.createElement('div');
+      caption.className = 'caption';
+      caption.textContent = product.caption;
+
+      card.appendChild(img);
+      card.appendChild(caption);
+
+      return card;
+    }
+
+    function updateCategoryButtons(activeCategory) {
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-cat') === activeCategory) {
+          btn.classList.add('active');
+        }
+      });
     }
 
     function openModal(src, caption) {
       const modal = document.getElementById('modal');
       document.getElementById('modal-image').src = src;
-      document.getElementById('modal-caption').innerText = caption;
+      document.getElementById('modal-caption').textContent = caption;
       modal.style.display = 'flex';
     }
 
-    function closeModal(event) {
-      // если кликнули по фону или на крестик
-      if (event && event.target.id !== 'modal' && !event.target.classList.contains('modal-close')) return;
+    function closeModal() {
       document.getElementById('modal').style.display = 'none';
     }
 
     // Инициализация
-    const saved = localStorage.getItem('lang') || 'ro';
-    setLang(saved);
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedLang = localStorage.getItem('lang') || 'ro';
+      setLang(savedLang);
+      
+      // Добавляем обработчики для кнопок категорий
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const category = this.getAttribute('data-cat');
+          renderProducts(category);
+        });
+      });
+
+      // Закрытие модального окна при клике вне контента
+      document.getElementById('modal').addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeModal();
+        }
+      });
+    });
   </script>
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="ro">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stupina Familiei Rebeja</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin:0; padding:0; text-align:center; }
-    .prod-menu {
-      margin: 20px 0;
-    }
-    .prod-menu button {
-      margin: 0 5px;
-      padding: 8px 12px;
-      cursor: pointer;
-      border:1px solid #ccc;
-      background:#f5f5f5;
-      border-radius:5px;
-    }
-    .prod-menu button.active {
-      background:#ffc107;
-      color:#fff;
-      border-color:#ffa000;
-    }
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-      gap:15px;
-      max-width:1000px;
-      margin:auto;
-      padding: 0 10px;
-    }
-    .card {
-      background:#fff;
-      border-radius:10px;
-      box-shadow:0 2px 8px rgba(0,0,0,0.1);
-      overflow:hidden;
-      cursor: pointer;
-    }
-    .card img {
-      width:100%;
-      height:auto;
-    }
-    .caption {
-      padding:10px;
-      font-size:0.9rem;
-      color:#333;
-    }
-  </style>
-</head>
-<body>
-
-  <h1>Stupina Familiei Rebeja</h1>
-  <p>Apicultură naturală din Șișcani, Moldova</p>
-
-  <div class="prod-menu">
-    <button data-cat="all" class="active">Toate</button>
-    <button data-cat="honey">Miere</button>
-    <button data-cat="perga">Perga</button>
-    <button data-cat="propolis">Propolis</button>
-    <button data-cat="nuclee">Familie de albine</button>
-  </div>
-
-  <div class="products-grid" id="products-grid">
-    <!-- карты товаров будут сюда вставляться -->
-  </div>
-
-<script>
-  const products = {
-    honey: [
-      { src:'images/honey.jpg', caption:'Miere — 250/500/1000 g, 100 % pură' },
-      { src:'images/honey2.jpg', caption:'Miere sort special' }
-    ],
-    perga: [
-      { src:'images/perga.jpg', caption:'Perga — vitamină naturală' }
-    ],
-    propolis: [
-      { src:'images/propolis.jpg', caption:'Propolis — sănătate' }
-    ],
-    nuclee: [
-      { src:'images/nuclee.jpg', caption:'Familii de albine robuste' }
-    ]
-  };
-
-  const grid = document.getElementById('products-grid');
-  const buttons = document.querySelectorAll('.prod-menu button');
-
-  function showProducts(category) {
-    grid.innerHTML = '';  // очистить
-    let catList;
-    if (category === 'all') {
-      // собрать все товары из всех категорий
-      Object.keys(products).forEach(cat => {
-        products[cat].forEach(p => {
-          const card = createCard(p);
-          grid.append(card);
-        });
-      });
-    } else {
-      catList = products[category] || [];
-      catList.forEach(p => {
-        const card = createCard(p);
-        grid.append(card);
-      });
-    }
-  }
-
-  function createCard(item) {
-    const div = document.createElement('div');
-    div.className = 'card';
-    const img = document.createElement('img');
-    img.src = item.src;
-    const cap = document.createElement('div');
-    cap.className = 'caption';
-    cap.innerText = item.caption;
-    div.append(img);
-    div.append(cap);
-    return div;
-  }
-
-  // обработка кликов по меню
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      const cat = btn.getAttribute('data-cat');
-      showProducts(cat);
-    });
-  });
-
-  // по умолчанию показать все
-  showProducts('all');
-</script>
-
-</body>
-</html>
-
